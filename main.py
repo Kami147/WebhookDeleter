@@ -18,7 +18,10 @@ except:
     sys.exit(1)
 if(r.status_code==200):
     print("[*] Webhook Online, We Will Now Try To Delete It...")
-
+else:
+    print("[-] Webhook Offline")
+    sys.exit(1)
+    
 requests.delete(webhook)
 
 r = requests.get(webhook, verify=False)
