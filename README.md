@@ -1,0 +1,2 @@
+# WebhookDeleter
+Deletes discord webhooks
