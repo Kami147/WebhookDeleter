@@ -1,0 +1,28 @@
+'''
+Attempts to delete discord webhooks.
+https://github.com/Kami147
+'''
+
+import requests, sys
+
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+
+print("Webhook deleter by Kami147\n")
+
+webhook = input("Webhook URL: ")
+try:
+    r = requests.get(webhook, verify=False)
+except:
+    print("[-] Invalid URL OR Failed To Load URL")
+    sys.exit(1)
+if(r.status_code==200):
+    print("[*] Webhook Online, We Will Now Try To Delete It...")
+
+requests.delete(webhook)
+
+r = requests.get(webhook, verify=False)
+if(r.status_code==404):
+    print("[+] Webhook Deleted!")
+else:
+    print("[-] Failed To Delete")
